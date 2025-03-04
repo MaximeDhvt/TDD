@@ -85,3 +85,7 @@ def evaluate_hand(hand):
     if count_values[0] == 2:
         return {"rank_value": 2, "rank_name": "Paire", "tiebreaker": sorted(counts, key=lambda r: (counts[r], r), reverse=True)}
     return {"rank_value": 1, "rank_name": "Carte Haute", "tiebreaker": sorted(ranks, reverse=True)}
+
+def deal_hand(deck):
+    """Distribue 5 cartes depuis le deck."""
+    return deck.deal(5)
