@@ -1,5 +1,6 @@
 import unittest
 from poker import Card, evaluate_hand
+from poker import Deck, deal_hand  # On importe les nouvelles fonctionnalités pour le deck auto
 
 class TestPokerHandEvaluation(unittest.TestCase):
     def test_quinte_flush_royale(self):
@@ -111,6 +112,23 @@ class TestPokerHandEvaluation(unittest.TestCase):
         ]
         result = evaluate_hand(hand)
         self.assertEqual(result['rank_name'], "Carte Haute")
+
+class TestDeck(unittest.TestCase):
+    def test_deck_initialisation(self):
+        deck = Deck()
+        self.assertEqual(len(deck.cards), 52, "Le deck doit contenir 52 cartes.")
+
+    def test_deal_hand(self):
+        deck = Deck()
+        hand = deck.deal(5)
+        self.assertEqual(len(hand), 5, "Une main doit contenir 5 cartes.")
+        self.assertEqual(len(deck.cards), 47, "Le deck doit contenir 47 cartes après distribution.")
+
+    def test_deal_hand_function(self):
+        deck = Deck()
+        hand = deal_hand(deck)
+        self.assertEqual(len(hand), 5, "La fonction deal_hand doit retourner 5 cartes.")
+        self.assertEqual(len(deck.cards), 47, "Après deal_hand, le deck doit contenir 47 cartes.")
 
 if __name__ == '__main__':
     unittest.main()
