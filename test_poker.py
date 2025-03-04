@@ -14,5 +14,17 @@ class TestPokerHandEvaluation(unittest.TestCase):
         result = evaluate_hand(hand)
         self.assertEqual(result['rank_name'], "Carte Haute")
 
+    def test_paire(self):
+        # Paire : une paire de 10, avec trois autres cartes
+        hand = [
+            Card("Coeur", "10"),
+            Card("Carreau", "10"),
+            Card("Trèfle", "Roi"),
+            Card("Pique", "4"),
+            Card("Coeur", "3")
+        ]
+        result = evaluate_hand(hand)
+        self.assertEqual(result['rank_name'], "Paire")
+
 if __name__ == '__main__':
     unittest.main()
