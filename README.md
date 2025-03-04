@@ -26,4 +26,5 @@ Prérequis :
 Python 3 (version 3.6 ou ultérieure recommandée)
 
 Pour vérifier que tout fonctionne correctement : python -m unittest discover
-Un script d'exemple show_hand.py est fourni pour afficher une main distribuée et son évaluation. : python show_hand.py
+
+Un script d'exemple est fourni pour afficher une main distribuée et son évaluation. : python show_hand.py
