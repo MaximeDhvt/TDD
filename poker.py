@@ -1,6 +1,5 @@
 import collections
 
-# Table de correspondance des rangs
 RANKS_ORDER = {
     "2": 2, "3": 3, "4": 4, "5": 5, "6": 6,
     "7": 7, "8": 8, "9": 9, "10": 10,
@@ -9,13 +8,21 @@ RANKS_ORDER = {
 
 class Card:
     def __init__(self, suit, rank):
-        self.suit = suit      # "Coeur", "Carreau", "Trèfle", "Pique"
-        self.rank = rank      # "2", "3", …, "10", "Valet", "Dame", "Roi", "As"
+        self.suit = suit
+        self.rank = rank
 
     def __repr__(self):
         return f"{self.rank} de {self.suit}"
 
-# La fonction evaluate_hand reste minimale pour l’instant
 def evaluate_hand(hand):
-    # Implémentation minimale : toujours retourne "Carte Haute"
-    return {"rank_value": 1, "rank_name": "Carte Haute", "tiebreaker": []}
+    # Conversion des rangs en valeurs numériques
+    ranks = [RANKS_ORDER[card.rank] for card in hand]
+    # Comptage des occurrences
+    counts = {}
+    for r in ranks:
+        counts[r] = counts.get(r, 0) + 1
+    # Si une paire est détectée
+    if 2 in counts.values():
+        return {"rank_value": 2, "rank_name": "Paire", "tiebreaker": sorted(ranks, reverse=True)}
+    # Sinon, retourne "Carte Haute"
+    return {"rank_value": 1, "rank_name": "Carte Haute", "tiebreaker": sorted(ranks, reverse=True)}
