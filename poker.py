@@ -1,4 +1,5 @@
 import collections
+import random
 
 RANKS_ORDER = {
     "2": 2, "3": 3, "4": 4, "5": 5, "6": 6,
@@ -19,6 +20,21 @@ class Card:
 
     def __hash__(self):
         return hash((self.suit, self.rank))
+
+class Deck:
+    def __init__(self):
+        suits = ["Coeur", "Carreau", "Trèfle", "Pique"]
+        ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "Valet", "Dame", "Roi", "As"]
+        self.cards = [Card(suit, rank) for suit in suits for rank in ranks]
+
+    def shuffle(self):
+        random.shuffle(self.cards)
+
+    def deal(self, num_cards):
+        dealt_cards = []
+        for _ in range(num_cards):
+            dealt_cards.append(self.cards.pop())
+        return dealt_cards
 
 def evaluate_hand(hand):
     """
