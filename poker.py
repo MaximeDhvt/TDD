@@ -14,3 +14,8 @@ class Card:
 
     def __repr__(self):
         return f"{self.rank} de {self.suit}"
+
+# La fonction evaluate_hand reste minimale pour l’instant
+def evaluate_hand(hand):
+    # Implémentation minimale : toujours retourne "Carte Haute"
+    return {"rank_value": 1, "rank_name": "Carte Haute", "tiebreaker": []}
